@@ -20,8 +20,7 @@ jobs:
       - name: Create PR
         uses: peter-evans/create-pull-request@v4
         with:
-          # token: ${{ secrets.PAT_TOKEN }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.BOT_TOKEN }}
           base: main
           commit-message: 'ci(changesets): version packages'
           title: 'Updated documentation'
