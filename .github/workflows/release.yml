@@ -26,7 +26,5 @@ jobs:
           commit-message: 'ci(changesets): version packages'
           title: 'Updated documentation'
           branch: release
-          # committer: 'github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>'
-          # author: 'github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>'
           assignees: 'hirotomoyamada'
           reviewers: 'hirotomoyamada'
