@@ -18,13 +18,11 @@ jobs:
           echo "This is updated." > README.md
 
       - name: Create PR
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.BOT_TOKEN }}
           base: main
           commit-message: 'ci(changesets): version packages'
-          committer: 'hirotomoyamada-actions <hirotomoyamada@icloud.com>'
-          author: 'hirotomoyamada-actions <hirotomoyamada@icloud.com>'
           title: 'Updated documentation'
           branch: release
           assignees: 'hirotomoyamada'
