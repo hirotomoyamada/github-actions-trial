@@ -10,6 +10,9 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Update README
         run: |
           echo "This is updated." > README.md
