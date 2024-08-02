@@ -15,7 +15,7 @@ jobs:
 
       - name: Time
         run: |
-          echo $(date -d '+9 hours -1 day' '+%Y-%m-%d %H:%M:%S')
+          echo $(date -d '+9 hours -7 day' '+%Y-%m-%d %H:%M:%S')
 
       # - name: Update README
       #   run: |
