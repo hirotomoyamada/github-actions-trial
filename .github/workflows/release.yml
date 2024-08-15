@@ -13,21 +13,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Time
+      - name: Update README
         run: |
-          echo $(date -d '+9 hours -7 day' '+%Y-%m-%d %H:%M:%S')
+          echo "This is updated." > README.md
 
-      # - name: Update README
-      #   run: |
-      #     echo "This is updated." > README.md
-
-      # - name: Create PR
-      #   uses: peter-evans/create-pull-request@v6
-      #   with:
-      #     token: ${{ secrets.BOT_TOKEN }}
-      #     base: main
-      #     commit-message: 'ci(changesets): version packages'
-      #     title: 'Updated documentation'
-      #     branch: release
-      #     assignees: 'hirotomoyamada'
-      #     reviewers: 'hirotomoyamada'
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.BOT_TOKEN }}
+          base: main
+          commit-message: 'ci(changesets): version packages'
+          title: 'Updated documentation'
+          branch: release
+          assignees: 'hirotomoyamada'
+          reviewers: 'hirotomoyamada'
