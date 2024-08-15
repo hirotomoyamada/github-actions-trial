@@ -26,4 +26,3 @@ jobs:
           title: 'Updated documentation'
           branch: release
           assignees: 'hirotomoyamada'
-          reviewers: 'hirotomoyamada'
