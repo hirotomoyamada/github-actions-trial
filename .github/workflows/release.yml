@@ -3,26 +3,33 @@ name: Release
 on:
   push:
     branches:
-      - main
+      - release
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  release:
-    name: Release
+  create:
+    name: Create PR
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Update README
+      - name: Check for existing PR
+        id: check_pr
         run: |
-          echo "This is updated." > README.md
+          pr_exists=$(gh pr list --base main --head release --json number --jq 'length')
+          echo "pr_exists=$pr_exists" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create PR
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          base: main
-          commit-message: 'ci(changesets): version packages'
-          title: 'Updated documentation'
-          branch: release
-          assignees: 'hirotomoyamada'
+        if: steps.check_pr.outputs.pr_exists == '0'
+        run: |
+          gh pr create --base main --head release --title "Release" --body "Automated PR for updating release"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
