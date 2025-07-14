@@ -32,7 +32,7 @@ jobs:
         with:
           # Avoid using single or double quotes for multiline patterns
           files: |
-            packages/**/*.md
+            packages/**/(README.md|test.md)
             !packages/a/*.md
 
       - name: Run
