@@ -24,7 +24,7 @@ runs:
     - name: Convert list to regex pattern
       id: convert-pattern
       run: |
-        regex_pattern=$(echo '${{ toJSON(inputs.files) }}' | jq -r 'join("|")')
+        regex_pattern=$(echo "${{ inputs.files }}" | grep -v '^$' | tr '\n' '|' | sed 's/|$//')
         echo "regex_pattern=$regex_pattern" >> $GITHUB_ENV
       shell: bash
 
