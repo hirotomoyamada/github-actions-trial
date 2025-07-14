@@ -1,0 +1,32 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  create:
+    name: Create PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check modified files
+        id: check-modified
+        uses: ./.github/composite-actions/check-modified-files
+        with:
+          files: |
+            .github/*
+            text.md
+
+      - name: Run
+        if: steps.check-modified.outputs.changed == 'true'
+        run: |
+          echo "changed: ${{ steps.check-modified.outputs.modified_files }}"
