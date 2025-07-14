@@ -24,7 +24,7 @@ jobs:
         uses: ./.github/composite-actions/check-modified-files
         with:
           files: |
-            hoge.md
+            text.md
 
       - name: Run
         if: steps.check-modified.outputs.changed == 'true'
