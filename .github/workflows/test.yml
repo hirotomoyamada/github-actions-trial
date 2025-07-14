@@ -19,14 +19,22 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Check modified files
+      # - name: Check modified files
+      #   id: check-modified
+      #   uses: ./.github/composite-actions/check-modified-files
+      #   with:
+      #     files: |
+      #       packages/(?!c/).*/README.md
+
+      - name: Get all changed markdown files
         id: check-modified
-        uses: ./.github/composite-actions/check-modified-files
+        uses: tj-actions/changed-files
         with:
+          # Avoid using single or double quotes for multiline patterns
           files: |
-            packages/(?!c/).*/README.md
+            packages/!(a)/README.md
 
       - name: Run
-        if: steps.check-modified.outputs.changed == 'true'
+        if: steps.check-modified.outputs.any_changed == 'true'
         run: |
-          echo "changed: ${{ steps.check-modified.outputs.modified_files }}"
+          echo "changed"
