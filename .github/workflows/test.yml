@@ -32,9 +32,7 @@ jobs:
         with:
           # Avoid using single or double quotes for multiline patterns
           files: |
-            packages/**/*.md
-            !packages/b/*.md
-            packages/b/README.md
+            packages/**/*.{md,ts}
 
       - name: Run
         if: steps.check-modified.outputs.any_changed == 'true'
