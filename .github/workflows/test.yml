@@ -28,11 +28,12 @@ jobs:
 
       - name: Get all changed markdown files
         id: check-modified
-        uses: tj-actions/changed-files@ed68ef82c095e0d48ec87eccea555d944a631a4c
+        uses: tj-actions/changed-files@v46
         with:
           # Avoid using single or double quotes for multiline patterns
           files: |
             packages/**/README.md
+            !packages/b/**
 
       - name: Run
         if: steps.check-modified.outputs.any_changed == 'true'
