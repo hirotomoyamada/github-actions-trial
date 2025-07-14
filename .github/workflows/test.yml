@@ -24,7 +24,6 @@ jobs:
         uses: ./.github/composite-actions/check-modified-files
         with:
           files: |
-            .github/
             text.md
 
       - name: Run
