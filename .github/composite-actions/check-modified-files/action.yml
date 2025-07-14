@@ -31,7 +31,7 @@ runs:
     - name: Get modified files
       id: get-modified
       run: |
-        modified_files=$(git diff --name-only FETCH_HEAD ${{ github.sha }} | tr '\n' ' ')
+        modified_files=$(git diff --name-only FETCH_HEAD ${{ github.sha }} | tr '\n' ' ' | sed 's/ /|/g')
         echo "modified_files=$modified_files" >> $GITHUB_OUTPUT
       shell: bash
 
