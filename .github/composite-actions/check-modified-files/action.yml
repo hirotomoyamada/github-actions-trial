@@ -38,6 +38,8 @@ runs:
     - name: Check modified files
       id: check-modified
       run: |
+        echo "regex_pattern: ${{ env.regex_pattern }}"
+        echo "modified_files: ${{ steps.get-modified.outputs.modified_files }}"
         changed=$(git diff --name-only FETCH_HEAD ${{ github.sha }} | grep -qE '^(${{ env.regex_pattern }})' && echo true || echo false)
         echo "changed=$changed" >> $GITHUB_OUTPUT
       shell: bash
